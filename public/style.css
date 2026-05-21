@@ -30,19 +30,22 @@ body {
 header {
     background-color: var(--card-bg);
     border-bottom: 1px solid var(--border-color);
-    padding: 60px 0;
+    padding: 40px 0;
     text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 header h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: var(--primary-color);
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 header p {
     color: var(--accent-color);
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .search-container {
@@ -81,6 +84,32 @@ main {
 .talk-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.talk-card.is-live {
+    border: 2px solid var(--primary-color);
+    position: relative;
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.15);
+}
+
+.live-badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
 }
 
 .talk-card.is-break {
@@ -128,6 +157,13 @@ main {
     border-radius: 100px;
     font-size: 0.8rem;
     font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.category-tag:hover {
+    background-color: var(--primary-color);
+    color: white;
 }
 
 footer {
