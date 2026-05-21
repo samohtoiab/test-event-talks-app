@@ -22,9 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const filteredTalks = allTalks.filter(talk => {
             if (talk.isBreak) return true; // Always show the lunch break
             
-            return talk.categories.some(category => 
-                category.toLowerCase().includes(searchTerm)
-            );
+            const inTitle = talk.title.toLowerCase().includes(searchTerm);
+            const inSpeakers = talk.speakers.some(speaker => speaker.toLowerCase().includes(searchTerm));
+            const inCategories = talk.categories.some(category => category.toLowerCase().includes(searchTerm));
+
+            return inTitle || inSpeakers || inCategories;
         });
 
         renderTalks(filteredTalks);
@@ -34,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scheduleContainer.innerHTML = '';
 
         if (talks.length === 0) {
-            scheduleContainer.innerHTML = '<p style="text-align:center; color:#64748b;">No talks found for this category.</p>';
+            scheduleContainer.innerHTML = '<p style="text-align:center; color:#64748b;">No talks found matching your search.</p>';
             return;
         }
 
